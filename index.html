@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Sales Recording</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Daily Sales Recording</h2>
+    <form id="salesForm">
+        <input type="text" id="ProductItem" placeholder="Product Name" required>
+        <input type="number" id="amount" placeholder="Amount Sold" required>
+        <input type="date" id="date" required>
+        <button type="submit">Save Sale</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>ProductItem</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody id="salesTable"></tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
