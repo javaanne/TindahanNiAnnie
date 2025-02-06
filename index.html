@@ -5,44 +5,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Sales Recording</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
+    <link rel="stylesheet" href="style.css" />
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-    </style>
 </head>
 
 <body>
     <h2>Daily Sales Recording</h2>
-    <form id="salesForm">
-        <input type="text" id="ProductItem" placeholder="Product Name" required>
-        <input type="number" id="amount" placeholder="Amount Sold" required>
-        <input type="date" id="date" required>
-        <button type="submit">Save Sale</button>
-    </form>
-    <table>
-        <thead>
-            <tr>
-                <th>ProductItem</th>
-                <th>Amount</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        <tbody id="salesTable"></tbody>
-    </table>
+    <div class="container">
+      <div id="salesFormDiv">
+        <form id="salesForm">
+            <fieldset id="salesField">
+                <legend>Enter Sales Details</legend>
+                <div id="form-group">
+                    <label>Date: <input type="date" id="Date" required></label>
+                </div>
+                <div id="form-group">
+                    <label>Product name: <input type="text" id="ProductItem" placeholder="Product Name" required></label>
+                </div>
+                <div id="form-group"><label>Qty: <input type="number" id="Qty" required></label>
+                </div>
+                <div id="form-group"><label>Unit Price: <input type="number" id="UnitPrice" placeholder="Amount Sold" required></label></div>
+                  <button type="submit">Save </button>
+            </fieldset>
+        </form>
+     </div>
+     <div id="salesTableDiv">
+        <fieldset id="TotSales">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ProductItem</th>
+                        <th>Qty</th>
+                        <th>UnitPrice</th>
+                        <th>TotalUnitPrice</th>
+                    </tr>
+                </thead>
+                <tbody id="salesTable"></tbody>
+            </table>
+        </fieldset>
+     </div>
+    </div>
+
+
+
 
     <script src="script.js"></script>
 </body>
