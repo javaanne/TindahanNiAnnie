@@ -1,31 +1,44 @@
+document.addEventListener("DOMContentLoaded", function() {
+    let today = new Date().toISOString().split('T')[0];
+    document.getElementById("Date").value = today;
+});
+
+
 document.getElementById("salesForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
-    let product = document.getElementById("ProductItem").value;
-    let amount = document.getElementById("UnitPrice").value;
-    let date = document.getElementById("Qty").value;
+       let date = document.getElementById("Date").value;
+       let product = document.getElementById("ProductItem").value;
+       let qty = document.getElementById("Qty").value;
+       let unitPrice = document.getElementById("UnitPrice").value;
 
-    if (product && amount && date) {
+        let date = document.getElementById("Date").value;
+        let product = document.getElementById("ProductItem").value;
+        let qty = document.getElementById("Qty").value;
+        let unitPrice = document.getElementById("UnitPrice").value;
+
+        if (date && product && qty && unitPrice) {
         let table = document.getElementById("salesTable");
         let row = table.insertRow();
-        row.insertCell(0).innerText = ProductItem;
-        row.insertCell(1).innerText = UnitPrice;
-        row.insertCell(2).innerText = Qty;
-        row.insertCell(3).innerText = amount * qty;
+        row.insertCell(0).innerText = product;
+        row.insertCell(1).innerText = qty;
+        row.insertCell(2).innerText = unitPrice;
+        row.insertCell(3).innerText = unitPrice * qty;
 
         // Send data to Google Sheets (API needed)
-        sendToGoogleSheets(ProductItem, UnitPrice, Qty);
+        sendToGoogleSheets(date, product, qty, unitPrice);
 
         // Clear form
         document.getElementById("salesForm").reset();
+        document.getElementById("Date").value = today; // Reset date to today
     }
 });
 
 function sendToGoogleSheets(ProductItem, UnitPrice, date) {
-    const scriptURL = "https://docs.google.com/spreadsheets/d/1FMTUdtTTLuS6pzh5EJ2W23Id0gbMw8GcgLNRYvooN_c/edit?gid=1445226343#gid=1445226343";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyLs7Lv2DwzhwnIdVvyeT9qMll2lFWrx5AEPPwGa0QuUPg73sSvc1bxhSgbpGfvHYlv/exec";
     fetch(scriptURL, {
         method: "POST",
-        body: JSON.stringify({ ProductItem, UnitPrice, Qty }),
+        body: JSON.stringify({ date, product, qty, unitPrice }),
         headers: { "Content-Type": "application/json" }
     }).then(response => console.log("Success!", response))
       .catch(error => console.error("Error!", error));
